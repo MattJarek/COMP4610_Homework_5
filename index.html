@@ -1,10 +1,75 @@
 <!DOCTYPE html>
 <html>
+<!-- Logo gotten from playscrabble.com-->
+
 <head>
     <meta charset="UTF-8" />
-    <title>title</title>
+    <title>Scrabble</title>
+    <!-- Linking -->
+    <!-- Link the jquery file -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Bootstrap -->
 </head>
+
 <body>
-    <p>Hello world</p>
+    <div class="page">
+        <div class="container-fluid text-center">
+            <div class="row">
+                <div class="col col-sm-12 header">
+                    <img src="graphics_data/hasbroRedBg.png" alt="Scrabble" width="35%">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-12 scrabble-line">
+                    <table class="board">
+                       <tbody id="board"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    <div id="trash" class="droppable">
+                        <p>Drop here</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row holder">
+                <div class="col col-sm-12">
+                    <table class="tiles">
+                        <tr>
+                            <td class="draggable" id=one>
+                                <div class="tile"></div>
+                            </td>
+                            <td class="draggable" id="two">
+                                <div class="tile"></div>
+                            </td>
+                            <td class="draggable" id="three">
+                                <div class="tile"></div>
+                            </td>
+                            <td class="draggable" id="four">
+                                <div class="tile"></div>
+                            </td>
+                            <td class="draggable" id="five">
+                                <div class="tile"></div>
+                            </td>
+                            <td class="draggable" id="six">
+                                <div class="tile"></div>
+                            </td>
+                            <td class="draggable" id="seven">
+                                <div class="tile"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

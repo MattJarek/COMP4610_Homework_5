@@ -1,3 +1,96 @@
+body{
+    background-color: #f04930;
+}
+
+div.page{
+    background-color: white;
+    width: 80%;
+    margin: 0 auto;
+}
+
 p {
     color: red;
+}
+
+.holder {
+    background-image: url("../graphics_data/Scrabble-Tile-Holder.png");
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.col {
+    border: 10px solid white;
+    background-color: white;
+}
+
+.scrabble-line{
+    background-image: url("../graphics_data/Scrabble_Board_OneLine.png");
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    background-color: #f04930;
+        border: 5px solid #f04930;
+
+}
+
+.tiles{
+    width: calc(46.6%*1);
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.tiles td {
+  width: calc(100% / 7); /* 7 equal cells */
+  padding: 0;
+  position: relative;
+  border-color: aqua;
+  border-radius: 1px;
+  border-style: solid;
+}
+
+.tiles td::before {
+  content: "";
+  display: block;
+  padding-bottom: 100%; /* makes the cell square */
+}
+
+
+.tile-piece{
+    width: 95%;position: absolute;
+    display: inline-block;
+    bottom: -3px;
+    left:0px;
+}
+
+#trash { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; background-color: antiquewhite;}
+
+
+.board {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.board td {
+  width: calc(100% / 15); /* 15 equal cells */
+  padding: 0;
+  position: relative;
+    border: 10px solid black;
+}
+
+.board td::before {
+  content: "";
+  display: block;
+  padding-bottom: 70%; /* makes the cell square */
+}
+
+.droppable {
+  border: 1px dashed red;  /* temp for debugging */
+  size: 100%;
 }
