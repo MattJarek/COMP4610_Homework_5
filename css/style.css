@@ -94,3 +94,7 @@ p {
   border: 1px dashed red;  /* temp for debugging */
   size: 100%;
 }
+
+.droppable-disabled{
+    background-color: cadetblue;
+}

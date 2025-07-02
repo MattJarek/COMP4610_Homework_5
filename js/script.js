@@ -76,17 +76,24 @@ class TileBag {
 }
 
 const bag = new TileBag(pieces);
+var placeAnywhere = true;
 
 $(function () {
     makeBoard();
-
     $(".droppable").droppable({
+        disabled: false,
         drop: function (event, ui) {
-            ui.helper.data("wasDropped", true);
             const $droppable = $(this);
             const $draggable = ui.helper;
-            $droppable.html($draggable.html())
-        }    
+            $draggable.data("wasDropped", true);
+            $droppable.html($draggable.html());
+            $droppable.data("hasTile", true);
+            blockCol = parseInt(this.dataset.col)
+            blockRow = parseInt(this.dataset.row)
+            enableSurroundingTiles(blockRow, blockCol);
+            console.log(`${this.dataset.col}`);
+
+        }
     });
     draggable("#one");
     draggable("#two");
@@ -97,6 +104,92 @@ $(function () {
     draggable("#seven");
 });
 
+function enableSurroundingTiles(centerRow, centerCol) {
+
+}
+
+function tallyScore(){
+    sum = 0;
+    $(".droppable").filter(function () {
+        return $(this).data("hasTile");
+    }).each(function () {
+        const $square = $(this);
+        sum = sum + $square.data.
+        placedTiles.push({
+            row: parseInt($square.data("row")),
+            col: parseInt($square.data("col")),
+            letter: $square.find("img").attr("alt")  // assuming your tile image's alt is the letter
+        });
+    });
+}
+
+
+function enableSurroundingTilesv1(centerRow, centerCol) {
+
+    let placedTiles = [];
+
+    $(".droppable").filter(function () {
+        return $(this).data("hasTile");
+    }).each(function () {
+        const $square = $(this);
+        placedTiles.push({
+            row: parseInt($square.data("row")),
+            col: parseInt($square.data("col")),
+            letter: $square.find("img").attr("alt")  // assuming your tile image's alt is the letter
+        });
+    });
+
+    console.log(placedTiles);
+    // $(".droppable").each(function () {
+    //     $(this).droppable("option", "disabled", true).addClass("droppable-disabled");
+    // });
+
+    $("droppable").filter(function () {
+        return $(this).data("hasTile");
+    }).each(function () {
+        const $square = $(this);
+        const row = parseInt($square.data("row"));
+        const col = parseInt($square.data("col"));
+        const neighbors = [
+            [row - 1, col],
+            [row + 1, col],
+            [row, col - 1],
+            [row, col + 1],
+        ];
+        neighbors.forEach(([nRow, nCol]) => {
+            const selector = `.droppable[data-row='${nRow}'][data-col='${nCol}']`;
+            const $neighbor = $(selector);
+            $neighbor.droppable("option", "disabled", false).removeClass("droppable-disabled");
+            // Only enable empty, unfilled squares
+            // if ($neighbor.length && !$neighbor.data("hasTile")) {
+            //     $neighbor.droppable("option", "disabled", false).removeClass("droppable-disabled");
+            // }
+        });
+
+    });
+    // $("data(has").each(function(){
+    //     const $square = $(this);
+    //     const row = parseInt($square.data("row"));
+    //     const col = parseInt($square.data("col"));
+    //     const rowDiff = Math.abs(row - centerRow);
+    //     const colDiff = Math.abs(col - centerCol);
+    //     const isSurrounding = ((rowDiff == 1 && colDiff == 0)||(rowDiff == 0 && colDiff == 1)) && !$square.data("hasTile");
+    //     $(".droppable").each(function(){
+    //         const $checkSquare = $(this);
+    //         const checkRow = parseInt($square.data("row"));
+    //         const checkCol = parseInt($square.data("col"));
+    //         const checkrowDiff = Math.abs(row - centerRow);
+    //         const checkcolDiff = Math.abs(col - centerCol);
+    //         // if(rowDiff)
+    //     });
+    //     if(isSurrounding){
+    //         $square.droppable("option", "disabled", false).removeClass("droppable-disabled");
+    //     }
+    //     else{
+    //         $square.droppable("option", "disabled", true).addClass("droppable-disabled");
+    //     }
+    // })
+}
 
 function draggable(id) {
     $(id).draggable({
@@ -126,7 +219,7 @@ function makeTileImageHtml() {
     return image;
 }
 
-function makeBoard(){
+function makeBoard() {
     const boardWidth = 15;
     const boardHeight = 1;
     const boardBody = document.getElementById("board");
@@ -136,6 +229,7 @@ function makeBoard(){
         for (let col = 0; col < boardWidth; col++) {
             const td = document.createElement("td");
             td.classList.add("droppable")
+            td.classList.add("board-space")
             td.dataset.row = row;
             td.dataset.col = col;
             td.innerHTML = "<p>Drop here</p>";
