@@ -35,7 +35,7 @@ class TileBag {
                 letter: piece.letter,
                 value: piece.value,
                 amount: piece.amount,
-                image: "graphics_data/Scrabble_Tiles/Scrabble_Tile_" + piece.letter + ".jpg"
+                image: "graphics_data/Solid/letter_" + piece.letter + ".png"
             };
         });
     }
@@ -95,6 +95,9 @@ $(function () {
 
         }
     });
+    $(".draggable").each(function(){
+        
+    })
     draggable("#one");
     draggable("#two");
     draggable("#three");
@@ -108,18 +111,18 @@ function enableSurroundingTiles(centerRow, centerCol) {
 
 }
 
-function tallyScore(){
+function tallyScore() {
     sum = 0;
     $(".droppable").filter(function () {
         return $(this).data("hasTile");
     }).each(function () {
         const $square = $(this);
         sum = sum + $square.data.
-        placedTiles.push({
-            row: parseInt($square.data("row")),
-            col: parseInt($square.data("col")),
-            letter: $square.find("img").attr("alt")  // assuming your tile image's alt is the letter
-        });
+            placedTiles.push({
+                row: parseInt($square.data("row")),
+                col: parseInt($square.data("col")),
+                letter: $square.find("img").attr("alt")  // assuming your tile image's alt is the letter
+            });
     });
 }
 
@@ -221,18 +224,108 @@ function makeTileImageHtml() {
 
 function makeBoard() {
     const boardWidth = 15;
-    const boardHeight = 1;
+    const boardHeight = 15;
     const boardBody = document.getElementById("board");
+    const tripple_word = [
+        [0,0],
+        [0,7],
+        [0,14],
+        [7,0],
+        [7,14],
+        [14,0],
+        [14,7],
+        [14,14]
+    ]
+    const double_letter = [
+        [0,3],
+        [0,11],
+        [2,6],
+        [2,8],
+        [3,0],
+        [3,7],
+        [3,14],
+        [6,2],
+        [6,6],
+        [6,8],
+        [6,12],
+        [7,3],
+        [7,11],
+        [14,3],
+        [14,11],
+        [12,6],
+        [12,8],
+        [11,0],
+        [11,7],
+        [11,14],
+        [8,2],
+        [8,6],
+        [8,8],
+        [8,12]
+    ]
+    const tripple_letter = [
+        [1,5],
+        [1,9],
+        [5,1],
+        [5,5],
+        [5,9],
+        [5,13],
+        [13,5],
+        [13,9],
+        [9,1],
+        [9,5],
+        [9,9],
+        [9,13]
+    ]
+    const double_word = [
+        [1,1],
+        [1,13],
+        [2,2],
+        [2,12],
+        [3,3],
+        [3,11],
+        [4,4],
+        [4,10],
+        [13,1],
+        [13,13],
+        [12,2],
+        [12,12],
+        [11,3],
+        [11,11],
+        [10,4],
+        [10,10],
+    ]
 
     for (let row = 0; row < boardHeight; row++) {
         const tr = document.createElement("tr");
         for (let col = 0; col < boardWidth; col++) {
             const td = document.createElement("td");
             td.classList.add("droppable")
-            td.classList.add("board-space")
             td.dataset.row = row;
             td.dataset.col = col;
-            td.innerHTML = "<p>Drop here</p>";
+            td.innerHTML = `<img class="board-tile" src="graphics_data/Solid/tile.png" alt="Drop Here">`;
+            for (let i =0; i<tripple_word.length;i++){
+                if((row==tripple_word[i][0]) && (col==tripple_word[i][1])){
+                    td.innerHTML = `<img class="board-tile" src="graphics_data/Solid/letter_T.png" alt="T">`;
+                }
+            }
+            for (let i =0; i<double_letter.length;i++){
+                if((row==double_letter[i][0]) && (col==double_letter[i][1])){
+                    td.innerHTML = `<img class="board-tile" src="graphics_data/Solid/letter_D.png" alt="D">`;
+                }
+            }
+            for (let i =0; i<tripple_letter.length;i++){
+                if((row==tripple_letter[i][0]) && (col==tripple_letter[i][1])){
+                    td.innerHTML = `<img class="board-tile" src="graphics_data/Solid/letter_L.png" alt="T">`;
+                }
+            }
+            for (let i =0; i<double_word.length;i++){
+                if((row==double_word[i][0]) && (col==double_word[i][1])){
+                    td.innerHTML = `<img class="board-tile" src="graphics_data/Solid/letter_S.png" alt="S">`;
+                }
+            }
+            if((row == 7)&&(col==7)){
+                    td.innerHTML = `<img class="board-tile" src="graphics_data/Solid/letter__.png" alt="_">`;
+            }
             tr.appendChild(td);
         }
         boardBody.appendChild(tr);
