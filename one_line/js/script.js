@@ -538,12 +538,11 @@ function isWordValid(word) {
             // 65 is the ASCII (or UTF-16) code for 'A'
             // 90 is the ASCII (or UTF-16) code for 'Z'
             let nWord = front + String.fromCharCode(i) + back;
-            isValid = isWordValid(nWord) && isValid;
-            if (isValid) {
-                return isValid
+            if (isWordValid(nWord)) {
+                return true
             }
         }
-        return isValid
+        return false
     }
     //if not retun if the word is in the dictionary
     console.log(dictionary.includes(word.toLowerCase())); 
