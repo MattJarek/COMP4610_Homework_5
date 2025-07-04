@@ -18,22 +18,25 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row header">
-            <div class="col text-center">
-                <img src="graphics_data/hasbroRedBg.png" alt="Scrabble">
+            <div class="col text-center header">
+                <img src="graphics_data/hasbroRedBg.png" alt="Scrabble" class="header-img">
             </div>
         </div>
         <div class="row board">
-            <div class="col table-center">
+            <div class="col table">
                 <table id="board"></table>
             </div>
         </div>
         <div class="row holder">
-            <div class="col">
+            <div class="col-sm-3">
+                <p class="score">Score: 0</p>
+            </div>
+            <div class="col-sm-7">
                 <table class="tiles">
                     <tr>
-                        <td class="draggable" id=one>
+                        <td class="draggable" id="one">
                             <img class="tile" src="graphics_data/Solid/letter__.png" alt="T">
                         </td>
                         <td class="draggable" id="two">
@@ -52,34 +55,21 @@
                             <img class="tile" src="graphics_data/Solid/letter__.png" alt="T">
                         </td>
                         <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt="T">
                         </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
+                        <td>
+                            <img src="graphics_data/Solid/black_square.png" alt="T">
                         </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
-                        </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
-                        </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
-                        </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
-                        </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
-                        </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
-                        </td>
-                        <td class="draggable" id="seven">
-                            <img class="board-tile" src="graphics_data/Solid/letter__.png" alt="T">
+                        <td class="droppable-trash">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt="T">
+
                         </td>
                     </tr>
                 </table>
+            </div>
+            <div class="col-sm-2 text-center">
+                <button>Submit</button>
+                <button>Reset</button>
             </div>
         </div>
     </div>

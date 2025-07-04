@@ -2,22 +2,44 @@ body{
     background-color: #f04930;
 }
 
-.col {
+.col, .row {
     border: 10px solid white;
     background-color: white;
 }
 
+.header{
+    background-color: #f04930;
+    border-width: 0;
+}
+
+.header-img{
+    width: 30%;
+}
 
 .droppable-disabled{
     background-color: cadetblue;
 }
 
-#board, .tiles{
+#board{
     background-color:black;
     margin: auto;
     border:5px solid black;
 }
+.tiles{
+    background-color:black;
+    margin: auto;
+}
 
 .board-tile, .tile{
     width: 100%;
+}
+
+.container-fluid{
+    width: 80%;
+}
+.holder{
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    border: 3px solid black;
 }
