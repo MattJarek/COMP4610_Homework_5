@@ -100,7 +100,7 @@ class TileBag {
 
 let dictionary = [];
 
-fetch("../words")
+fetch("words")
   .then(response => response.text())
   .then(text => {
     dictionary = text.split("\n").map(w => w.trim().toLowerCase());
