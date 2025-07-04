@@ -538,6 +538,7 @@ function isWordValid(word) {
             // 65 is the ASCII (or UTF-16) code for 'A'
             // 90 is the ASCII (or UTF-16) code for 'Z'
             let nWord = front + String.fromCharCode(i) + back;
+            console.log(`The word: ${nWord} is ${isWordValid(nWord)}`)
             if (isWordValid(nWord)) {
                 return true
             }
