@@ -2,7 +2,17 @@ body{
     background-color: #f04930;
 }
 
-.col, .row {
+.row {
+    padding: 10px;
+    border: 4px solid black;
+    background-color: white;
+}
+.plain{
+    padding: 10px;
+    border: 0px solid black;
+    background-color: white;
+}
+.col{
     border: 10px solid white;
     background-color: white;
 }
@@ -36,10 +46,11 @@ body{
 
 .container-fluid{
     width: 80%;
+    border: 4px, solid, black;
 }
-.holder{
+/* .holder{
     position: fixed;
     bottom: 0;
     width: 80%;
     border: 3px solid black;
-}
+} */
