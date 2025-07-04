@@ -17,3 +17,11 @@ The fifth homework for Graphical User Interface Design. Created a scrabble board
 * jquery ui help: https://jqueryui.com/
 * bootstrap help: https://getbootstrap.com/
 * overall coding help: https://www.w3schools.com/
+##  Links
+### One Line Implementation
+* GitHub Repo : https://github.com/MattJarek/COMP4610_Homework_5/tree/main/one_line
+* GitHub Pages: https://mattjarek.github.io/COMP4610_Homework_5/one_line/
+### Whole Board Implementation
+* GitHub Repo: https://github.com/MattJarek/COMP4610_Homework_5/tree/main/full_board
+* GitHub Pages: https://mattjarek.github.io/COMP4610_Homework_5/full_board/
+

@@ -545,6 +545,7 @@ function isWordValid(word) {
         }
         return isValid
     }
-    //if not retun if the word is in the dictionary 
+    //if not retun if the word is in the dictionary
+    console.log(dictionary.includes(word.toLowerCase())); 
     return dictionary.includes(word.toLowerCase());
 }
