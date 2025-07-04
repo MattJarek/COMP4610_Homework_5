@@ -1,7 +1,7 @@
 // File: script.js
 // GUI Assignment: Scrabble
 // Matthew Jarek, UMass Lowell Computer Science, matthew_jarek@student.uml.edu
-// Updated by MJ on July 4, 2025 at 6:43 PM
+// Updated by MJ on July 4, 2025 at 7:37 PM
 //     Tile pieces and board squares, gotten and modified from kenny letter pack: https://kenney.nl/assets/letter-tiles
 //     Trash can image from bootstrap image library: https://icons.getbootstrap.com/icons/trash/
 //     Scrabble logo from the scabble website: https://playscrabble.com/
@@ -538,7 +538,6 @@ function isWordValid(word) {
             // 65 is the ASCII (or UTF-16) code for 'A'
             // 90 is the ASCII (or UTF-16) code for 'Z'
             let nWord = front + String.fromCharCode(i) + back;
-            console.log(`The word: ${nWord} is ${isWordValid(nWord)}`)
             if (isWordValid(nWord)) {
                 return true
             }
@@ -546,6 +545,5 @@ function isWordValid(word) {
         return false
     }
     //if not retun if the word is in the dictionary
-    console.log(dictionary.includes(word.toLowerCase())); 
     return dictionary.includes(word.toLowerCase());
 }
