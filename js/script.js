@@ -38,14 +38,27 @@ class TileBag {
                 image: "graphics_data/Solid/letter_" + piece.letter + ".png"
             };
         });
+        this._score = 0;
     }
+
+    get score(){
+        return this,this._score
+    }
+
+    set score(value){
+        this._score = value;
+    }
+
     getTotalTiles() {
         let total = 0;
         for (const key in this) {
-            total += this[key].amount
+            if(key != "_score"){
+                total += this[key].amount
+            }
         }
         return total;
     }
+
     removeTile(letter) {
         var tile = this[letter];
         if (!tile) {
@@ -85,27 +98,44 @@ class TileBag {
     }
 }
 
+let dictionary = [];
+
+fetch("../words")
+  .then(response => response.text())
+  .then(text => {
+    dictionary = text.split("\n").map(w => w.trim().toLowerCase());
+    console.log("Dictionary loaded with", dictionary.length, "words.");
+  })
+  .catch(err => console.error("Failed to load dictionary:", err));
+
 const bag = new TileBag(pieces);
 var placeAnywhere = true;
-var score = 0;
 
 $(function () {
     makeBoard();
-    $(".droppable").droppable({
-        disabled: false,
-        drop: function (event, ui) {
-            const $droppable = $(this);
-            const $draggable = ui.helper;
-            $draggable.data("wasDropped", true);
-            $droppable.html($draggable.html());
-            $droppable.data("hasTile", true);
-            blockCol = parseInt(this.dataset.col)
-            blockRow = parseInt(this.dataset.row)
-            enableSurroundingTiles(blockRow, blockCol);
-            nScore =(tallyScore(score));
-            $('.score').text(`${nScore}`);
-        }
+    $(".submit").click(function() {
+        bag.score = tallyScore(bag.score)
+        submit(bag.score);
+        console.log(`${bag.score}`)
     });
+    $(".reset").click(function() {
+        reset(bag.score);
+    });
+    // $(".droppable").droppable({
+    //     disabled: false,
+    //     drop: function (event, ui) {
+    //         const $droppable = $(this);
+    //         const $draggable = ui.helper;
+    //         $draggable.data("wasDropped", true);
+    //         $droppable.html($draggable.html());
+    //         $droppable.data("hasTile", true);
+    //         blockCol = parseInt(this.dataset.col)
+    //         blockRow = parseInt(this.dataset.row)
+    //         enableSurroundingTiles(blockRow, blockCol);
+    //         nScore =(tallyScore(score));
+    //         $('.score').text(`${nScore}`);
+    //     }
+    // });
     $(".droppable-trash").droppable({
         disabled: false,
         drop: function (event, ui) {
@@ -196,7 +226,7 @@ function draggable(id) {
 
         }
     });
-    image = $(id).find(".tile").html(makeTileImageHtml());
+    image = $(id).find(".tile");
     tile = bag.drawTile();
     image.attr("src", tile.image);
     image.attr("alt", tile.letter);
@@ -214,8 +244,8 @@ function makeTileImageHtml() {
 
 function makeBoard() {
     const boardWidth = 15;
-    const boardHeight = 15;
-    const boardBody = document.getElementById("board");
+    const boardHeight = 2;
+    const boardBody = $('#board');
     const tripple_word = [
         [0, 0],
         [0, 7],
@@ -325,6 +355,67 @@ function makeBoard() {
             }
             tr.appendChild(td);
         }
-        boardBody.appendChild(tr);
+        boardBody.html(tr);
     }
+    $(".droppable").droppable({
+        disabled: false,
+        drop: function (event, ui) {
+            const $droppable = $(this);
+            const $draggable = ui.helper;
+            $draggable.data("wasDropped", true);
+            $droppable.html($draggable.html());
+            $droppable.data("hasTile", true);
+            letter = $draggable.find(".tile").attr("alt");
+            $droppable.data("letter", letter)
+            blockCol = parseInt(this.dataset.col)
+            blockRow = parseInt(this.dataset.row)
+            enableSurroundingTiles(blockRow, blockCol);
+            nScore =(tallyScore(bag.score));
+            $('.score').text(`${nScore}`);
+        }
+    });
+}
+
+function submit(score){
+    word = '';
+    $(".droppable").filter(function () {
+        return $(this).data("hasTile");
+    }).each(function () {
+        word += $(this).data("letter")
+    });
+    if(isWordValid(word)){
+        console.log("Yay")
+    }
+    makeBoard();
+    $(".draggable").filter(function () {
+        return $(this).draggable("option", "disabled");
+    }).each(function () {
+        $square = $(this)
+            $square.draggable("option", "disabled", false);
+            id = $square.attr('id');
+            draggable(`#${id}`);
+        });
+}
+
+function reset(){
+    makeBoard();
+    $(".draggable").each(function () {
+        $square = $(this);
+        if($square.draggable("option", "disabled")){
+            $square.draggable("option", "disabled", false);
+            id = $square.attr('id');
+            id = `#${id}`;
+            image = $(id).find(".tile");
+            letter = image.attr("alt")
+            image.attr("src", `graphics_data/Solid/letter_${letter}.png`);
+        }
+    });
+}
+
+function isWordValid(word) {
+    if (!dictionary.length) {
+        console.error("Dictionary not loaded yet!");
+        return false;
+    }
+    return dictionary.includes(word.toLowerCase());
 }
