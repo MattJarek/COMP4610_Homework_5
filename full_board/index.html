@@ -1,3 +1,13 @@
+<!--
+    File: index.html
+    GUI Assignment: Scrabble
+    Matthew Jarek, UMass Lowell Computer Science, matthew_jarek@student.uml.edu
+    Updated by MJ on July 4, 2025 at 6:43 PM
+        Tile pieces and board squares, gotten and modified from kenny letter pack: https://kenney.nl/assets/letter-tiles
+        Trash can image from bootstrap image library: https://icons.getbootstrap.com/icons/trash/
+        Scrabble logo from the scabble website: https://playscrabble.com/
+-->
+
 <!DOCTYPE html>
 <html>
 <!-- Logo gotten from playscrabble.com-->
@@ -19,7 +29,7 @@
     <!-- Make the container -->
     <div class="container-fluid">
         <div class="row header">
-           <!-- Make the header -->
+            <!-- Make the header -->
             <div class="col text-center header">
                 <!-- Scrabble logo from the scabble website: https://playscrabble.com/ -->
                 <img src="graphics_data/hasbroRedBg.png" alt="Scrabble" class="header-img">
@@ -35,10 +45,10 @@
         <div class="row holder">
             <div class="col-sm-3">
                 <div class="row plain">
-                <p class="score">Score: 0</p>
+                    <p class="score">Score: 0</p>
                 </div>
                 <div class="row plain">
-                <p class="word">Word: </p>
+                    <p class="word">Word: </p>
                 </div>
             </div>
             <div class="col-sm-7">
@@ -68,7 +78,7 @@
                             <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
                         </td>
                         <td>
-                            <!-- Black square image for spacing -->        
+                            <!-- Black square image for spacing -->
                             <img class="tile" src="graphics_data/Solid/black_square.png" alt="">
                         </td>
                         <!-- Trash can image from bootstrap image library: https://icons.getbootstrap.com/icons/trash/ -->
@@ -81,9 +91,9 @@
             </div>
             <!-- Buttons -->
             <div class="col-sm-2 text-center">
-                <input class="btn submit" type="submit" value="Submit">
-                <input class="btn reset" type="reset" value="Reset">
-                <input class="btn restart" type="reset" value="Restart">
+                <input class="btn submit btn-success" type="submit" value="Submit">
+                <input class="btn reset btn-warning" type="reset" value="Reset">
+                <input class="btn restart btn-danger" type="reset" value="Restart">
                 <!-- Spot for an error message -->
                 <p class="error"></p>
             </div>

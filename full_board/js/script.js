@@ -1,3 +1,11 @@
+// File: script.js
+// GUI Assignment: Scrabble
+// Matthew Jarek, UMass Lowell Computer Science, matthew_jarek@student.uml.edu
+// Updated by MJ on July 4, 2025 at 7:06 PM
+//     Tile pieces and board squares, gotten and modified from kenny letter pack: https://kenney.nl/assets/letter-tiles
+//     Trash can image from bootstrap image library: https://icons.getbootstrap.com/icons/trash/
+//     Scrabble logo from the scabble website: https://playscrabble.com/
+
 // Copy the pieces.json data ("creator":"Ramon Meza")
 const pieces = [
     { "letter": "A", "value": 1, "amount": 9 },
@@ -177,8 +185,9 @@ $(function () {
 function makeBoard() {
     //Set the board size, height = 1 for single line, =15 for full board
     const boardWidth = 15;
-    const boardHeight = 2;
+    const boardHeight = 15;
     const boardBody = $('#board');
+    boardBody.html('');
     //Manually set the 'special' space locations
     const tripple_word = [
         [0, 0],
@@ -294,7 +303,7 @@ function makeBoard() {
             tr.appendChild(td);
         }
         //make the table the board
-        boardBody.html(tr);
+        boardBody.append(tr);
     }
     //enable the droppable class to be droppable
     $(".droppable").droppable({
@@ -379,6 +388,7 @@ function tallyScore(score = 0) {
     let placedTiles = [];
     let wordMult = 1;
     let sum = score;
+    let numLetters = 0;
     //Go through each droppable with a tile
     $(".droppable").filter(function () {
         return $(this).data("hasTile");
@@ -388,9 +398,16 @@ function tallyScore(score = 0) {
         placedTiles.push($square.find("img").attr("alt"))
         sum += bag.getScoreValue($square.find("img").attr("alt")) * $square.data("letterMult");
         wordMult *= $square.data("wordMult");
+        numLetters += 1;
     });
     //apply the word multiplier and return the calculated score
-    return (sum * wordMult);
+    if (numLetters == 7) {
+        numLetters = 50;
+    }
+    else {
+        numLetters = 0;
+    }
+    return ((sum * wordMult) + numLetters);
 }
 
 function draggable(id) {

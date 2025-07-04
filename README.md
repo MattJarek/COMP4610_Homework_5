@@ -1,6 +1,5 @@
 # COMP4610_Homework_5
-The fourth homework for Graphical User Interface Design. 
-Created a scrabble board game using html, css and java script. There are two versions of this, the one line allows you to play only on the top line of the board, while the full board allows you to play on the full board. Both versions have the same features except for the fact the full board allows vertical words, read from top to bottom. 
+The fifth homework for Graphical User Interface Design. Created a scrabble board game using html, css and java script. There are two versions of this. Each are located in there own folder. The one_line allows you to play only on the top line of the board, while the full_board allows you to play on the full board. Both versions have the same features except for the fact the full board allows vertical words, read from top to bottom. 
 ## Features
 * The word that is being played and score is shown in real time.
 * Bonus squares accuratly multiply the letter/word score.

@@ -1,0 +1,92 @@
+/*  
+    File: style.css
+    GUI Assignment: Scrabble
+    Matthew Jarek, UMass Lowell Computer Science, matthew_jarek@student.uml.edu
+    Updated by MJ on July 4, 2025 at 6:43 PM
+        Tile pieces and board squares, gotten and modified from kenny letter pack: https://kenney.nl/assets/letter-tiles
+        Trash can image from bootstrap image library: https://icons.getbootstrap.com/icons/trash/
+        Scrabble logo from the scabble website: https://playscrabble.com/
+*/
+body {
+    background-color: #f04930;
+}
+
+.row {
+    padding: 10px;
+    border: 4px solid black;
+    background-color: white;
+}
+.board{
+     margin-bottom: 200px;
+}
+
+.plain {
+    padding: 10px;
+    border: 0px solid black;
+    background-color: white;
+}
+
+.col {
+    border: 10px solid white;
+    background-color: white;
+}
+
+.header {
+    background-color: #f04930;
+    border-width: 0;
+}
+
+.header-img {
+    width: 30%;
+}
+
+.droppable-disabled {
+    background-color: cadetblue;
+}
+
+#board {
+    background-color: black;
+    margin: auto;
+    border: 5px solid black;
+}
+
+.tiles {
+    background-color: black;
+    margin: auto;
+}
+
+.board-tile,
+.tile {
+    width: 100%;
+}
+
+.container-fluid {
+    width: 80%;
+    border: 4px, solid, black;
+}
+
+.score,
+.word {
+    font-size: 20px;
+}
+
+.btn {
+    font-size: 20px;
+    /* padding: 10px 15px; */
+    margin: 5px 10px;
+}
+
+.ui-draggable-dragging {
+    z-index: 100;
+}
+
+.ui-draggable-disabled {
+    z-index: 0;
+}
+
+.holder{
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    border: 3px solid black;
+}

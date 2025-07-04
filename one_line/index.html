@@ -1,0 +1,104 @@
+<!--
+    File: index.html
+    GUI Assignment: Scrabble
+    Matthew Jarek, UMass Lowell Computer Science, matthew_jarek@student.uml.edu
+    Updated by MJ on July 4, 2025 at 6:43 PM
+        Tile pieces and board squares, gotten and modified from kenny letter pack: https://kenney.nl/assets/letter-tiles
+        Trash can image from bootstrap image library: https://icons.getbootstrap.com/icons/trash/
+        Scrabble logo from the scabble website: https://playscrabble.com/
+-->
+
+<!DOCTYPE html>
+<html>
+<!-- Logo gotten from playscrabble.com-->
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Scrabble</title>
+    <!-- Link all needed files, self explanitory -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Make the container -->
+    <div class="container-fluid">
+        <div class="row header">
+            <!-- Make the header -->
+            <div class="col text-center header">
+                <!-- Scrabble logo from the scabble website: https://playscrabble.com/ -->
+                <img src="graphics_data/hasbroRedBg.png" alt="Scrabble" class="header-img">
+            </div>
+        </div>
+        <!-- Make the table that javascript will fill in with the board info -->
+        <div class="row board">
+            <div class="col table">
+                <table id="board"></table>
+            </div>
+        </div>
+        <!-- Show the score and word -->
+        <div class="row holder">
+            <div class="col-sm-3">
+                <div class="row plain">
+                    <p class="score">Score: 0</p>
+                </div>
+                <div class="row plain">
+                    <p class="word">Word: </p>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <!-- Show some pieces, all blank, javascript will replace with actual letter pieces -->
+                <table class="tiles">
+                    <tr>
+                        <!-- Tile pieces and board squares, gotten and modified from kenny letter pack: https://kenney.nl/assets/letter-tiles -->
+                        <td class="draggable" id="one">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
+                        </td>
+                        <td class="draggable" id="two">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
+                        </td>
+                        <td class="draggable" id="three">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
+                        </td>
+                        <td class="draggable" id="four">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
+                        </td>
+                        <td class="draggable" id="five">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
+                        </td>
+                        <td class="draggable" id="six">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
+                        </td>
+                        <td class="draggable" id="seven">
+                            <img class="tile" src="graphics_data/Solid/letter__.png" alt=" ">
+                        </td>
+                        <td>
+                            <!-- Black square image for spacing -->
+                            <img class="tile" src="graphics_data/Solid/black_square.png" alt="">
+                        </td>
+                        <!-- Trash can image from bootstrap image library: https://icons.getbootstrap.com/icons/trash/ -->
+                        <td class="droppable-trash">
+                            <img class="tile" src="graphics_data/Solid/letter_trash.png" alt="Trash">
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Buttons -->
+            <div class="col-sm-2 text-center">
+                <input class="btn submit btn-success" type="submit" value="Submit">
+                <input class="btn reset btn-warning" type="reset" value="Reset">
+                <input class="btn restart btn-danger" type="reset" value="Restart">
+                <!-- Spot for an error message -->
+                <p class="error"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
