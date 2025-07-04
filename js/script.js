@@ -386,6 +386,7 @@ function submit(score){
     if(isWordValid(word)){
         console.log("Yay")
     }
+    else(console.log("Boo"))
     makeBoard();
     $(".draggable").filter(function () {
         return $(this).draggable("option", "disabled");
