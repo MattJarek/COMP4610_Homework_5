@@ -44,7 +44,7 @@ class TileBag {
         //Make a variable to keep track of the overall score
         this._score = 0;
     }
-    bagReset(){
+    bagReset() {
         //Go through each piece and add the values
         pieces.forEach(piece => {
             this[piece.letter] = {
@@ -151,8 +151,8 @@ $(function () {
         reset();
     });
     //if the restart button is clicked
-    $('.restart').click(function() {
-            restart();
+    $('.restart').click(function () {
+        restart();
     });
     //make the trash block
     $(".droppable-trash").droppable({
@@ -367,7 +367,7 @@ function enableSurroundingTiles(centerRow, centerCol) {
         neighbors.forEach(([nRow, nCol]) => {
             const selector = `.droppable[data-row='${nRow}'][data-col='${nCol}']`;
             const $neighbor = $(selector);
-            if(!$neighbor.data("hasTile")){
+            if (!$neighbor.data("hasTile")) {
                 $neighbor.droppable("option", "disabled", false).removeClass("droppable-disabled");
             }
         });
@@ -448,6 +448,8 @@ function submit() {
     }
     //if it is a valid word replace all played tiles (draggable disabled) with new letters
     else {
+        // clear the error
+        $(".error").text(``)
         makeBoard();
         $(".draggable").filter(function () {
             return $(this).draggable("option", "disabled");
@@ -461,6 +463,8 @@ function submit() {
 }
 
 function reset() {
+    // clear the error
+    $(".error").text(``)
     //clear the board
     makeBoard();
     //go through each piece that was dragged and restore it
@@ -478,6 +482,8 @@ function reset() {
 }
 
 function restart() {
+    // clear the error
+    $(".error").text(``)
     //clear the board
     makeBoard();
     //reset the bag
@@ -502,22 +508,22 @@ function isWordValid(word) {
         return true;
     }
     //If there is an '_' go through every posible combination
-    if(word.includes('_', )){
+    if (word.includes('_',)) {
         let parts = word.split('_');
         let front = parts[0];
         let back = ''
-        for(let i = 1; i < parts.length; i++){
-            if(i != 1 ){
+        for (let i = 1; i < parts.length; i++) {
+            if (i != 1) {
                 back += "_";
             }
-                back += parts[i];
+            back += parts[i];
         }
         for (let i = 65; i <= 90; i++) {
             // 65 is the ASCII (or UTF-16) code for 'A'
             // 90 is the ASCII (or UTF-16) code for 'Z'
             let nWord = front + String.fromCharCode(i) + back;
             isValid = isWordValid(nWord) && isValid;
-            if(isValid){
+            if (isValid) {
                 return isValid
             }
         }
